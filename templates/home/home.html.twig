@@ -2,27 +2,32 @@
 
 {% block title %}NombreApp{% endblock %}
 
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('build/app.css')}}">
-{% endblock %}
-
 {% block body %}
-<div class="background-image-home">
-<header class="bg-success fixed-top p-3">
+
+<header class="fixed-top p-3">
     <div class="container-fluid">
-    <h3 class="text-light">NombreApp</h3>
-    <nav class ="">
-        <ul class="d-flex pr-4">
-            <li class="text-light"><a href="">Recetas</a></li>
-            <li class="text-light"><a href="{{ path('register') }}">Registrarse</a></li>
-            <li class="text-light"><a href="{{ path('login') }}">Iniciar sesión</a></li>
-        </ul>
-    </nav>   
+
+ 
+    <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">NombreApp</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Recetas</a></li>
+
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href= "{{ path("register")}}"><span class="glyphicon glyphicon-user"></span> Registrarse</a></li>
+      <li><a href= "{{ path("login")}}"><span class="glyphicon glyphicon-log-in"></span> Iniciar sesión</a></li>
+    </ul>
+  </div>
+</nav>
 
 
 </div>
 </header>
-</div>
+
 
 
 {% endblock %}
