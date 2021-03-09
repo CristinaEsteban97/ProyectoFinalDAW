@@ -1,9 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}NombreApp{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('build/app.css')}}">
+{% endblock %}
 
 {% block body %}
-<div class="example-wrapper">
-<h1>Nombre de la app</h1>
+<div class="background-image-home">
+<header class="bg-success fixed-top p-3">
+    <div class="container-fluid">
+    <h3 class="text-light">NombreApp</h3>
+    <nav class ="">
+        <ul class="d-flex pr-4">
+            <li class="text-light"><a href="">Recetas</a></li>
+            <li class="text-light"><a href="{{ path('register') }}">Registrarse</a></li>
+            <li class="text-light"><a href="{{ path('login') }}">Iniciar sesión</a></li>
+        </ul>
+    </nav>   
+
+
 </div>
+</header>
+</div>
+
+
 {% endblock %}
