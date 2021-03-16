@@ -14,6 +14,11 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface
 {
+    public function __construct()
+    {
+        //$this->roles = ['ROLE_USER'];
+    }
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -41,6 +46,11 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255)
      */
     private $username;
+
+    /**
+     *  @ORM\OneToMany(targetEntity="Recipe", mappedBy="user")
+     */
+    private $recipes;
 
     public function getId(): ?int
     {
@@ -77,6 +87,7 @@ class User implements UserInterface
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
+        //return $this->roles;
 
         return array_unique($roles);
     }
@@ -126,6 +137,18 @@ class User implements UserInterface
     public function setUsername(string $username): self
     {
         $this->username = $username;
+
+        return $this;
+    }
+
+    public function getRecipes(): ?array
+    {
+        return $this->recipes;
+    }
+
+    public function setRecipes(?array $recipes): self
+    {
+        $this->recipes = $recipes;
 
         return $this;
     }
