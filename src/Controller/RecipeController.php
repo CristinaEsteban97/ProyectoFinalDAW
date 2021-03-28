@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\UploadRecipesType;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
 
 class RecipeController extends AbstractController
 {
@@ -37,6 +39,21 @@ class RecipeController extends AbstractController
             $recipe->setVisible(0);
             $user = $this->getUser();
             $recipe->setUser($user);
+            $image = $form->get('image')->getData();
+
+            if ($image) {
+                $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+
+                $safeFilename = iconv('UTF-8', 'ASCII//TRANSLIT', $originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$image->guessExtension();
+
+                $image->move(
+                    $this->getParameter('images_directory'),
+                    $newFilename
+                );
+
+                $recipe->setImage($newFilename);
+            }
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($recipe);
@@ -52,7 +69,7 @@ class RecipeController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="recipe_show", methods={"GET"})
+     * @Route("/receta/{id}", name="recipe_show", methods={"GET"})
      */
     public function show(Recipe $recipe): Response
     {
@@ -62,7 +79,7 @@ class RecipeController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="recipe_edit", methods={"GET","POST"})
+     * @Route("/receta/{id}/editar", name="recipe_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Recipe $recipe): Response
     {
@@ -82,7 +99,7 @@ class RecipeController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="recipe_delete", methods={"DELETE"})
+     * @Route("/receta/{id}/borrar", name="recipe_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Recipe $recipe): Response
     {

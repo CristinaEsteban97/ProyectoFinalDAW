@@ -30,10 +30,12 @@ class RegistrationController extends AbstractController
                 )
             );
 
+            $user->setUsername($user->getUsername());  
+            $user->setRoles($user->getRoles());
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
-            // do anything else you need here, like send an email
 
             return $this->redirectToRoute('login');
         }

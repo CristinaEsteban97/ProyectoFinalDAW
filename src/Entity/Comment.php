@@ -24,7 +24,7 @@ class Comment
     private $user;
 
     /**
-     * @ORM\OneToOne(targetEntity="Recipe")
+     * @ORM\OneToOne(targetEntity="Recipe",cascade={"remove"})
      * @ORM\JoinColumn(name="recipe_id", referencedColumnName="id")
      */
     private $recipe;
@@ -44,24 +44,31 @@ class Comment
         return $this->id;
     }
 
-    public function getUser(): ?string
+    public function setId(int $id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    public function getUser()
     {
         return $this->user;
     }
 
-    public function setUser(string $user): self
+    public function setUser($user)
     {
         $this->user = $user;
 
         return $this;
     }
 
-    public function getRecipe(): ?string
+    public function getRecipe()
     {
         return $this->recipe;
     }
 
-    public function setRecipe(string $recipe): self
+    public function setRecipe($recipe)
     {
         $this->recipe = $recipe;
 

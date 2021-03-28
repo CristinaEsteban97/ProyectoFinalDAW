@@ -14,11 +14,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface
 {
-    public function __construct()
-    {
-        //$this->roles = ['ROLE_USER'];
-    }
-
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -55,6 +50,13 @@ class User implements UserInterface
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(int $id)
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getEmail(): ?string
@@ -141,15 +143,20 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getRecipes(): ?array
+    public function getRecipes()
     {
         return $this->recipes;
     }
 
-    public function setRecipes(?array $recipes): self
+    public function setRecipes($recipes)
     {
         $this->recipes = $recipes;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return (string)$this->getId();
     }
 }

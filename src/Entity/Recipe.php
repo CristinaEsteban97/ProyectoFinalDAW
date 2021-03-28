@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\RecipeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,6 +12,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Recipe
 {
+    public function __construct() {
+        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -47,9 +53,22 @@ class Recipe
      */
     private $visible;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Category", inversedBy="recipe")
+     * @ORM\JoinTable(name="recipes_categories")
+     */
+    private $categories;
+
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(int $id)
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getName(): ?string
@@ -88,12 +107,12 @@ class Recipe
         return $this;
     }
 
-    public function getUser(): ?string
+    public function getUser()
     {
         return $this->user;
     }
 
-    public function setUser($user): self
+    public function setUser($user)
     {
         $this->user = $user;
 
@@ -122,5 +141,22 @@ class Recipe
         $this->visible = $visible;
 
         return $this;
+    }
+
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+    public function setCategories($categories)
+    {
+        $this->categories = $categories;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return (string)$this->getId();
     }
 }

@@ -6,7 +6,7 @@ use App\Entity\Recipe;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use App\Form\FileType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class UploadRecipesType extends AbstractType
 {
@@ -14,7 +14,7 @@ class UploadRecipesType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('image', FileType::class)
+            ->add('image',FileType::class)
             ->add('description')
         ;
     }
