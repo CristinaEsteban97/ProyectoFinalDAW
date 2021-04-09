@@ -24,8 +24,8 @@ class Comment
     private $user;
 
     /**
-     * @ORM\OneToOne(targetEntity="Recipe",cascade={"remove"})
-     * @ORM\JoinColumn(name="recipe_id", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="Recipe")
+     * @ORM\JoinColumn(name="recipe_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $recipe;
 

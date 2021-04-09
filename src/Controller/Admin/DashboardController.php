@@ -16,7 +16,7 @@ use App\Entity\Recipe;
 class DashboardController extends AbstractDashboardController
 {
     /**
-     * @Route("/admin")
+     * @Route("/admin", name="admin")
      */
     public function index(): Response
     {

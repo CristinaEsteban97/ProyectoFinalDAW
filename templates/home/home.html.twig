@@ -11,7 +11,7 @@
       <a class="navbar-brand" href="#">NombreApp</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class=""><a href="#">Recetas</a></li>
+      <li class=""><a href="{{path("recipes")}}">Recetas</a></li>
       {% if is_granted('ROLE_USER')%}
         <li class=""><a href="{{path("recipe_new")}}">Subir receta</a></li>
       {%- endif %}

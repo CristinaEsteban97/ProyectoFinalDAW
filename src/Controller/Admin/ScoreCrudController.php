@@ -3,7 +3,10 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Score;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 
 class ScoreCrudController extends AbstractCrudController
 {
@@ -11,15 +14,15 @@ class ScoreCrudController extends AbstractCrudController
     {
         return Score::class;
     }
-
-    /*
+    
     public function configureFields(string $pageName): iterable
     {
         return [
             IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
+            AssociationField::new('user'),
+            AssociationField::new('recipe'),
+            IntegerField::new('score'),
         ];
     }
-    */
+    
 }
