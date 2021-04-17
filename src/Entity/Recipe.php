@@ -39,7 +39,8 @@ class Recipe
     private $description;
 
     /** 
-     *  @ORM\ManyToOne(targetEntity="User", inversedBy="recipes")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="recipes")
+     * @ORM\JoinColumn(nullable=false)
     */
     private $user;
 

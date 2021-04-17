@@ -1,43 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Recipe index{% endblock %}
+{% block title %}Recipe index
+{% endblock %}
 
 {% block body %}
-    <h1>Recipe index</h1>
+	<h1 class>Recipe index</h1>
+<div class= "d-flex flex-row bg-success">
+	{% for recipe in recipes %}
+    
+		<div class="card w-25 ">
+			<img src="{{ asset('uploads/images/' ~ recipe.getImage()) }}" class="card-img-top" alt="...">
+			<div class="card-body">
+				<h5 class="card-title">{{ recipe.name }}</h5>
+				<p class="card-text">{{ recipe.description }}</p>
+				<a href="{{ path('recipe_show', {'id': recipe.id}) }}" class="btn btn-primary w-25">Ver detalles</a>
+			</div>
+		</div>
+    
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Image</th>
-                <th>Description</th>
-                <th>Score</th>
-                <th>Visible</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for recipe in recipes %}
-            <tr>
-                <td>{{ recipe.id }}</td>
-                <td>{{ recipe.name }}</td>
-                <td>{{ recipe.image }}</td>
-                <td>{{ recipe.description }}</td>
-                <td>{{ recipe.score }}</td>
-                <td>{{ recipe.visible ? 'Yes' : 'No' }}</td>
-                <td>
-                    <a href="{{ path('recipe_show', {'id': recipe.id}) }}">show</a>
-                    <a href="{{ path('recipe_edit', {'id': recipe.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	{% else %}
+		<tr>
+			<td colspan="7">no records found</td>
+		</tr>
+	{% endfor %}
+</div>
 
-    <a href="{{ path('recipe_new') }}">Create new</a>
+	<a href="{{ path('recipe_new') }}">Create new</a>
 {% endblock %}

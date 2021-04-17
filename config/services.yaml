@@ -31,3 +31,38 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    admin.category:
+        class: App\Admin\CategoryAdmin
+        arguments: [~, App\Entity\Category, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Panel administrador, label: Categorías }
+        public: true
+
+    admin.recipe:
+        class: App\Admin\RecipeAdmin
+        arguments: [~, App\Entity\Recipe, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Panel administrador, label: Recetas }
+        public: true
+
+    admin.user:
+        class: App\Admin\UserAdmin
+        arguments: [~, App\Entity\User, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Panel administrador, label: Usuarios }
+        public: true
+
+    admin.comment:
+        class: App\Admin\CommentAdmin
+        arguments: [~, App\Entity\Comment, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Panel administrador, label: Comentarios }
+        public: true
+
+    admin.score:
+        class: App\Admin\ScoreAdmin
+        arguments: [~, App\Entity\Score, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Panel administrador, label: Puntuaciones }
+        public: true
