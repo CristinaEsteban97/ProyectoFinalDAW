@@ -3,3 +3,8 @@
 .padding-06{
   padding-top: 0.6rem;
 }
+
+.button-navbar:hover{
+  background-color: lightgrey;
+  color:white;
+}
