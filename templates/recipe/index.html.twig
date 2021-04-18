@@ -5,25 +5,24 @@
 
 {% block body %}
 	<h1 class>Recipe index</h1>
-<div class= "d-flex flex-row bg-success">
-	{% for recipe in recipes %}
-    
-		<div class="card w-25 ">
-			<img src="{{ asset('uploads/images/' ~ recipe.getImage()) }}" class="card-img-top" alt="...">
-			<div class="card-body">
-				<h5 class="card-title">{{ recipe.name }}</h5>
-				<p class="card-text">{{ recipe.description }}</p>
-				<a href="{{ path('recipe_show', {'id': recipe.id}) }}" class="btn btn-primary w-25">Ver detalles</a>
+	<div class="d-flex flex-row bg-success">
+		{% for recipe in recipes %}
+			<div class="card w-25 ">
+				<img src="{{ asset('uploads/images/' ~ recipe.getImage()) }}" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title">{{ recipe.name }}</h5>
+					<p class="card-text">{{ recipe.description }}</p>
+					<a href="{{ path('recipe_show', {'id': recipe.id}) }}" class="btn btn-primary w-25">Ver detalles</a>
+				</div>
 			</div>
-		</div>
-    
 
-	{% else %}
-		<tr>
-			<td colspan="7">no records found</td>
-		</tr>
-	{% endfor %}
-</div>
+
+		{% else %}
+			<tr>
+				<td colspan="7">no records found</td>
+			</tr>
+		{% endfor %}
+	</div>
 
 	<a href="{{ path('recipe_new') }}">Create new</a>
 {% endblock %}
