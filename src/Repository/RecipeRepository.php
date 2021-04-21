@@ -20,16 +20,16 @@ class RecipeRepository extends ServiceEntityRepository
     }
 
   
-    public function findRecipesByVisible($value)
-    {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.visible = :val')
-            ->setParameter('val', $value)
-            ->orderBy('r.id', 'ASC')
-            ->getQuery()
-            ->getResult()
-        ;
-    }
+    // public function findRecipesByVisible($value)
+    // {
+    //     return $this->createQueryBuilder('r')
+    //         ->andWhere('r.visible = :val')
+    //         ->setParameter('val', $value)
+    //         ->orderBy('r.id', 'ASC')
+    //         ->getQuery()
+    //         ->getResult()
+    //     ;
+    // }
 
     /*
     public function findOneBySomeField($value): ?Recipe

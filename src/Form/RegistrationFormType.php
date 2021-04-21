@@ -30,7 +30,12 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('username', TextType::class,[
-                'label' => 'Nombre de usuario'
+                'label' => 'Nombre de usuario',
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Ya existe ese nombre de usuario',
+                    ]),
+                ],
             ])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,

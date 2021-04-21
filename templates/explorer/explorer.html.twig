@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Explora{% endblock %}
+
+{% block body %}
+<div class="pt-4">
+{% for category in categories %}
+    <div class="d-inline-flex p-4 border w-25">{{category.name}}</div>
+
+{% else %}
+    
+{% endfor %}
+</div>
+{% endblock %}

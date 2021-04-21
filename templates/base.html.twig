@@ -29,7 +29,7 @@
 							<div class="container-fluid">
 								<div class="navbar-header bg-white d-flex">
 									<a class="navbar-brand" href="{{path("home")}}">NombreApp</a>
-									<a class="text-decoration-none padding-06 me-3" href="{{path("recipes")}}">Recetas</a>
+									<a class="text-decoration-none padding-06 me-3" href="{{path("explorer")}}">Explora</a>
 									{% if is_granted('ROLE_USER')%}
 										<a class="text-decoration-none padding-06 me-3" href="{{path("recipe_new")}}">Subir receta</a>
 									{%- endif %}
