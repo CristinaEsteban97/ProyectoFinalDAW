@@ -1,10 +1,61 @@
 /* Home page */
 
-.padding-06{
+.padding-06 {
   padding-top: 0.6rem;
 }
+.button-navbar {
+  transition: 0.5s;
+}
 
-.button-navbar:hover{
+.button-navbar:hover {
   background-color: lightgrey;
-  color:white;
+  color: white;
+}
+
+.slogan {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-family: serif;
+  color: aliceblue;
+}
+
+/* Login page */
+
+.content {
+  width: 100%;
+  padding: 0;
+  display: table;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+}
+
+.content1 {
+  padding: 0;
+  vertical-align: middle;
+  display: table-cell;
+  margin: 0;
+}
+
+.content2 {
+  width: 600px;
+  background-color: #fff;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.button-steelblue {
+  color: #fff;
+  border-color: #0d6efd;
+  background-color: steelblue;
+  border: 1px solid transparent;
+  transition: 0.5s;
+}
+
+.button-steelblue:hover{
+  background-color: darkblue;
 }

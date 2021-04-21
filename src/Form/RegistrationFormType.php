@@ -27,10 +27,11 @@ class RegistrationFormType extends AbstractType
                     new NotBlank([
                         'message' => 'Por favor introduce un email',
                     ]),
-                 
                 ],
             ])
-            ->add('username', TextType::class)
+            ->add('username', TextType::class,[
+                'label' => 'Nombre de usuario'
+            ])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'Las contraseñas no coinciden',

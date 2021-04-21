@@ -1,12 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Registro{% endblock %}
+{% block title %}Registro
+{% endblock %}
 
 {% block body %}
-    {{ form_start(form) }}
-        {{ form_row(form.username) }}
-        {{ form_row(form.email) }}
-        {{ form_row(form.password) }}
-        <button tye="submit">Registro</button>
-    {{ form_end(form) }}
+	<body class="overflow-hidden">
+		<video playsinline autoplay muted loop poster="build/images/video4.mp4" id="bgvid">
+			<source src="build/images/video4.mp4" type="video/mp4">
+		</video>
+		<div class="content">
+			<div class="content1">
+				{{ form_start(form, { 'attr' : { 'class': 'content2 p-4 rounded' } }) }}
+				<h1 class="h3 mb-3 font-weight-normal text-center">Registro</h1>
+				{{ form_label(form.username) }}
+				{{ form_widget(form.username, { 'attr' : { 'class': 'd-block mb-3 form-control mt-3' }}) }}
+				{{ form_errors(form.username, { 'attr' : { 'class': 'text-danger' }}) }}
+				{{ form_label(form.email) }}
+				{{ form_widget(form.email, { 'attr' : { 'class': 'd-block mb-3 form-control mt-3' }}) }}
+				{{ form_errors(form.email) }}
+				{% for passwordField in form.password %}
+					{{ form_label(passwordField) }}
+					{{ form_widget(passwordField, { 'attr': {'class': 'd-block mb-3 form-control mt-3'} }) }}
+					{{ form_errors(form.email) }}
+				{% endfor %}
+				<button tye="submit" class="button-steelblue btn-sm btn-sm mt-3">Registrarse</button>
+				{{ form_end(form) }}
+			</div>
+		</div>
+	</body>
 {% endblock %}
