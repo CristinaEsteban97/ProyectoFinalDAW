@@ -3,25 +3,34 @@
 namespace App\Form;
 
 use App\Entity\Recipe;
+use App\Entity\Category;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+
 
 class UploadRecipesType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name',TextType::class,[
-                'label' => 'Nombre de la receta',
+            ->add('title',TextType::class,[
+                'label' => 'Titulo',
             ])
             ->add('image',FileType::class,[
                 'label' => 'Imagen',
             ])
-            ->add('description',TextType::class,[
+            ->add('description',TextareaType::class,[
                 'label' => 'Descripción',
+            ])
+            ->add('categories',EntityType::class,[
+                'class' => Category::class,
+                'label' => 'Categoria',
+                'choice_label' => 'name',
             ])
         ;
     }

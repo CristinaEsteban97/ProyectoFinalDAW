@@ -19,4 +19,5 @@ class ExplorerController extends AbstractController
             'categories' => $categoryRepository->findAll()
         ]);
     }
+    
 }
