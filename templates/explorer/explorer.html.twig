@@ -10,7 +10,9 @@
 				{% for category in categories %}
 					<a class ="text-decoration-none" href="{{path('category', {'name': category.name })}}">
 						<div class="d-inline-flex p-4 m-4 border w-25 image-explorer bg-{{category.name}}">
-							<p class="text-center w-100 h-100 text-light fs-2">{{category.name}}</p>
+						<div class="ey"></div>
+							<p class="text-center w-100 h-100 text-light fs-2">{{category.name |capitalize}}</p>
+							
 						</div>
 					</a>
 					{% else %}
