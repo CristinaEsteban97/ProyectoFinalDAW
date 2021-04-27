@@ -3,5 +3,21 @@
 {% block title %}Recetas{% endblock %}
 
 {% block body %}
+	<body class=">">
+		<div class="d-flex justify-content-center text-center bg-beige">
+			<div class="pt-4">
+				{% for recipe in recipes %}
+					{# <a class ="text-decoration-none" href="{{path('recipe_show', {'id': recipe.id })}}"> #}
+						{# <div class="d-inline-flex p-4 m-4 border w-25 image-explorer bg-{{recipe.title}}"> #}
+						<div class="ey"></div>
+							{# <p class="text-center w-100 h-100 text-light fs-2">{{category.name |capitalize}}</p> #}
+							
+						{# </div> #}
+					{# </a> #}
+					{% else %}
 
+				{% endfor %}
+			</div>
+		</div>
+	</body>
 {% endblock %}

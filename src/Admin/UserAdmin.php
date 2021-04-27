@@ -9,6 +9,8 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+
 
 final class UserAdmin extends AbstractAdmin
 {
@@ -44,7 +46,10 @@ final class UserAdmin extends AbstractAdmin
     {
         $formMapper
             ->add('email')
-            ->add('roles')
+            ->add('roles', ChoiceType::class, [
+                'multiple' => true,
+                'choices' => ['ROLE_USER' => 'ROLE_USER', 'ROLE_ADMIN' => 'ROLE_ADMIN']
+            ])
             ->add('password',null,['label' =>'Contraseña'])
             ->add('username',null,['label' =>'Nombre de usuario'])
             ;

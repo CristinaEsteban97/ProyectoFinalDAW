@@ -26,6 +26,8 @@ final class CommentAdmin extends AbstractAdmin
         $listMapper
             ->add('id')
             ->add('text',null,['label' =>'Texto'])
+            ->add('user', CollectionType::class)
+            ->add('recipe', CollectionType::class)
             ->add('visible')
             ->add('_action', null, [
                 'label' => 'Acciones',
@@ -50,6 +52,8 @@ final class CommentAdmin extends AbstractAdmin
         $showMapper
             ->add('text',null,['label' =>'Texto'])
             ->add('visible')
+            ->add('user', CollectionType::class)
+            ->add('recipe', CollectionType::class)
             ;
     }
 }

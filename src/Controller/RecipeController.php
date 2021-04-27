@@ -40,6 +40,7 @@ class RecipeController extends AbstractController
             $recipe->setVisible(0);
             $user = $this->getUser();
             $recipe->setUser($user);
+
             $image = $form->get('image')->getData();
 
             if ($image) {
@@ -55,6 +56,7 @@ class RecipeController extends AbstractController
 
                 $recipe->setImage($newFilename);
             }
+
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($recipe);

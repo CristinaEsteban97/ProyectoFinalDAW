@@ -20,16 +20,18 @@ class RecipeRepository extends ServiceEntityRepository
     }
 
   
-    // public function findRecipesByVisible($value)
-    // {
-    //     return $this->createQueryBuilder('r')
-    //         ->andWhere('r.visible = :val')
-    //         ->setParameter('val', $value)
-    //         ->orderBy('r.id', 'ASC')
-    //         ->getQuery()
-    //         ->getResult()
-    //     ;
-    // }
+     public function findRecipesByCategory($category)
+     {
+         return $this->createQueryBuilder('r')
+             ->andWhere('r.visible = 1')
+             ->andWhere('r.categories = pescados')
+             ->setParameter('cat', $category)
+             ->getQuery();
+            //  ->getResult()
+             
+             $query->getSql()
+         ;
+     }
 
     /*
     public function findOneBySomeField($value): ?Recipe

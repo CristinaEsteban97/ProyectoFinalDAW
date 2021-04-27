@@ -11,7 +11,9 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-
+use Symfony\Component\Form\CallbackTransformer;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class UploadRecipesType extends AbstractType
 {
@@ -29,10 +31,13 @@ class UploadRecipesType extends AbstractType
             ])
             ->add('categories',EntityType::class,[
                 'class' => Category::class,
+                'mapped' => true,
                 'label' => 'Categoria',
                 'choice_label' => 'name',
+                'multiple' => true,
+                'expanded' => false
             ])
-        ;
+;
     }
 
     public function configureOptions(OptionsResolver $resolver)

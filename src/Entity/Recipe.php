@@ -55,7 +55,7 @@ class Recipe
     private $visible;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Category", inversedBy="recipe")
+     * @ORM\ManyToMany(targetEntity="Category", inversedBy="recipe", cascade={"persist"})
      * @ORM\JoinTable(name="recipes_categories")
      */
     private $categories;
@@ -77,7 +77,7 @@ class Recipe
         return $this->title;
     }
 
-    public function setName(string $title): self
+    public function setTitle(string $title): self
     {
         $this->title = $title;
 
@@ -156,8 +156,26 @@ class Recipe
         return $this;
     }
 
+    
+
     public function __toString()
     {
-        return (string)$this->getId();
+        return $this->getTitle();
+    }
+
+    public function addCategory(Category $category): self
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories[] = $category;
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): self
+    {
+        $this->categories->removeElement($category);
+
+        return $this;
     }
 }
