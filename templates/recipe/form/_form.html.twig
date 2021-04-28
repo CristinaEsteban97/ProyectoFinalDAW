@@ -1,4 +1,26 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+<div class="content pt-4">
+	<div class="content1 pt-4">
+			{% for message in app.flashes('success') %}
+			<div class="alert alert-success  mb-4">
+				{{ message }}
+			</div>
+		{% endfor %}
+		{% form_theme form 'errors_form.html.twig' %}
+		{{ form_start(form, { 'attr' : { 'class': 'content2 p-4 rounded' } }) }}
+		<h1 class="h3 mb-3 font-weight-normal text-center">Sube tu propia receta</h1>
+		{{ form_label(form.title) }}
+		{{ form_widget(form.title, { 'attr' : { 'class': 'd-block mb-3 form-control mt-3' }}) }}
+		{{ form_errors(form.title) }}
+		{{ form_label(form.image) }}
+		{{ form_widget(form.image, { 'attr' : { 'class': 'd-block mb-3 form-control mt-3' }}) }}
+		{{ form_errors(form.image) }}
+		{{ form_label(form.description) }}
+		{{ form_widget(form.description, { 'attr' : { 'class': 'd-block mb-3 form-control mt-3' }}) }}
+		{{ form_errors(form.description) }}
+		{{ form_label(form.categories) }}
+		{{ form_widget(form.categories, { 'attr' : { 'class': 'd-block mb-3 form-control mt-3' }}) }}
+		{{ form_errors(form.categories) }}
+		<button tye="submit" class="button-steelblue btn-sm btn-sm mt-3">Subir</button>
+		{{ form_end(form) }}
+	</div>
+</div>

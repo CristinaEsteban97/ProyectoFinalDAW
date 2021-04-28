@@ -5,12 +5,19 @@
 
 {% block body %}
 	<body class="overflow-hidden">
+
+		{% for message in app.flashes('success') %}
+			<div class="alert alert-success  mb-0">
+				{{ message }}
+			</div>
+		{% endfor %}
+		
 		<video playsinline autoplay muted loop poster="build/images/video4.mp4" id="bgvid">
 			<source src="build/images/video4.mp4" type="video/mp4">
 		</video>
 		<div class="content pt-4">
 			<div class="content1 pt-4">
-			 {% form_theme form 'errors_form.html.twig' %}
+				{% form_theme form 'errors_form.html.twig' %}
 				{{ form_start(form, { 'attr' : { 'class': 'content2 p-4 rounded' } }) }}
 				<h1 class="h3 mb-3 font-weight-normal text-center">Registro</h1>
 				{{ form_label(form.username) }}

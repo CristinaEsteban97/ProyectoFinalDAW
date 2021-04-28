@@ -21,7 +21,7 @@ class UploadRecipesType extends AbstractType
     {
         $builder
             ->add('title',TextType::class,[
-                'label' => 'Titulo',
+                'label' => 'Título',
             ])
             ->add('image',FileType::class,[
                 'label' => 'Imagen',

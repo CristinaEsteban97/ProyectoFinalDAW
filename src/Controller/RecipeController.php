@@ -62,7 +62,8 @@ class RecipeController extends AbstractController
             $entityManager->persist($recipe);
             $entityManager->flush();
 
-            //return $this->redirectToRoute('recipes');
+            $this->addFlash('success', '¡Receta subida correctamente!');
+
         }
 
         return $this->render('recipe/new/new.html.twig', [
@@ -76,7 +77,7 @@ class RecipeController extends AbstractController
      */
     public function show(Recipe $recipe): Response
     {
-        return $this->render('recipe/show.html.twig', [
+        return $this->render('recipe/show/show.html.twig', [
             'recipe' => $recipe,
         ]);
     }

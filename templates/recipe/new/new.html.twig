@@ -1,10 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Subir receta{% endblock %}
+{% block title %}Subir receta
+{% endblock %}
 
 {% block body %}
-    <h1>Sube tu propia receta</h1>
 
-    {{ include('recipe/form/_form.html.twig') }}
+	<body class="bg-beige">
+
+		<div class="d-flex justify-content-center">
+			{{ include('recipe/form/_form.html.twig') }}
+		</div>
+	</body>
 
 {% endblock %}

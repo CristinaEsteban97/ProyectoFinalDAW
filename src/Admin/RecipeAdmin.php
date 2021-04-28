@@ -50,9 +50,25 @@ final class RecipeAdmin extends AbstractAdmin
 
     protected function configureFormFields(FormMapper $formMapper): void
     {
-        $formMapper
+        
+
+            $image = $this->getSubject();
+
+            // use $fileFormOptions so we can add other options to the field
+            $fileFormOptions = ['required' => false];
+            if ($image && ($webPath = $image->getImage())) {
+                // get the request so the full path to the image can be set
+                $request = $this->getRequest();
+                $fullPath = $request->getBasePath().'/'.$webPath;
+    
+                // add a 'help' option containing the preview's img tag
+                $fileFormOptions['help'] = '<img src="'.$fullPath.'" class="admin-preview"/>';
+                $fileFormOptions['help_html'] = true;
+            }
+
+            $formMapper
             ->add('title',null,['label' =>'Título'])
-            ->add('image',null,['label' =>'Imagen'])
+            // ->add('image', FileType::class, $fileFormOptions)
             ->add('description',null,['label' =>'Descripción'])
             ->add('score',null,['label' =>'Puntuación'])
             ->add('visible')
@@ -68,6 +84,7 @@ final class RecipeAdmin extends AbstractAdmin
             ->add('user', CollectionType::class)
             ->add('score',null,['label' =>'Puntuaciones'])
             ->add('visible')
+            ->add('categories',null,['label' =>'Categorias'])
             ;
     }
 }

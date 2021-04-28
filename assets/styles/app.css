@@ -12,6 +12,10 @@
   color: white;
 }
 
+.z-index{
+  z-index: 1;
+}
+
 .slogan {
   top: 0;
   bottom: 0;
@@ -78,60 +82,98 @@
 }
 
 .bg-vegetariano {
-  background-image: url("../images/vegetariano.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/vegetariano.jpg");
+}
+
+.bg-vegetariano:hover{
+    opacity: 1;
 }
 
 .bg-vegano {
-  background-image: url("../images/vegano.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/vegano.jpg");
+}
+
+.bg-vegano:hover{
+  opacity: 1;
 }
 
 .bg-carnes {
-  background-image: url("../images/carnes.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/carnes.jpg");
+}
+
+.bg-carnes:hover{
+  opacity: 1;
 }
 
 .bg-arroces {
-  background-image: url("../images/arroces.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/arroces.jpg");
+}
+
+.bg-arroces:hover{
+  opacity: 1;
 }
 
 .bg-pasta {
-  background-image: url("../images/pasta.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/pasta.jpg");
+}
+
+.bg-pasta:hover{
+  opacity: 1;
 }
 
 .bg-celiacos {
-  background-image: url("../images/celiacos.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/celiacos.jpg");
+}
+
+.bg-celiacos:hover{
+  opacity: 1;
 }
 
 .bg-bocadillos {
-  background-image: url("../images/bocadillos.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/bocadillos.jpg");
+}
+
+.bg-bocadillos:hover{
+  opacity: 1;
 }
 
 .bg-pescados {
-  background-image: url("../images/pescados.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/pescados.jpg");
+}
+
+.bg-pescados:hover{
+  opacity: 1;
 }
 
 .bg-legumbres {
-  background-image: url("../images/legumbres.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/legumbres.jpg");
+}
+
+.bg-legumbres:hover{
+  opacity: 1;
 }
 
 .bg-verduras {
-  background-image: url("../images/verduras.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/verduras.jpg");
+}
+
+.bg-verduras:hover{
+  opacity: 1;
 }
 
 .bg-ensaladas {
-  background-image: url("../images/ensaladas.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/ensaladas.jpg");
+}
+
+.bg-ensaladas:hover{
+  opacity: 1;
 }
 
 .bg-batidos {
-  background-image: url("../images/batidos.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/batidos.jpg");
 }
 
-/* .ey{
-  opacity: .7;
-  background: #5f5f5f;
-  border-radius: 5px;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-} */
+.bg-batidos:hover{
+  opacity: 1;
+}
+
