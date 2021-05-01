@@ -35,7 +35,7 @@ class Recipe
     private $image;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text")
      */
     private $description;
 
@@ -60,6 +60,11 @@ class Recipe
      * @ORM\JoinTable(name="recipes_categories")
      */
     private $categories;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $ingredients;
 
     public function getId(): ?int
     {
@@ -176,6 +181,18 @@ class Recipe
     public function removeCategory(Category $category): self
     {
         $this->categories->removeElement($category);
+
+        return $this;
+    }
+
+    public function getIngredients(): ?string
+    {
+        return $this->ingredients;
+    }
+
+    public function setIngredients(string $ingredients): self
+    {
+        $this->ingredients = $ingredients;
 
         return $this;
     }

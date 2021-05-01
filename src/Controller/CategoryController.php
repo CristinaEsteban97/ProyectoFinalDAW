@@ -16,17 +16,19 @@ class CategoryController extends AbstractController
     public function index(RecipeRepository $recipeRepository, string $name): Response
     {
         $recipes = $recipeRepository->findRecipesByCategory($name);
-
+        $no_recipes = '';
         
         if($recipes){  // If there are recipes of this category with visible = 0
 
         }else{  // If there aren't recipes of this category with visible = 0
-            echo "Hola";
+            $no_recipes = 'No existen aún recetas de la categoria';
         }
         
 
         return $this->render('category/category.html.twig', [
-            'recipes' => $recipes            
+            'name_category' => $name,
+            'recipes' => $recipes,
+            'no_recipes' => $no_recipes         
         ]);
     }
 

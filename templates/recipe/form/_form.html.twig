@@ -1,6 +1,6 @@
 <div class="content pt-4">
 	<div class="content1 pt-4">
-			{% for message in app.flashes('success') %}
+		{% for message in app.flashes('success') %}
 			<div class="alert alert-success  mb-4">
 				{{ message }}
 			</div>
@@ -14,6 +14,9 @@
 		{{ form_label(form.image) }}
 		{{ form_widget(form.image, { 'attr' : { 'class': 'd-block mb-3 form-control mt-3' }}) }}
 		{{ form_errors(form.image) }}
+		{{ form_label(form.ingredients) }}
+		{{ form_widget(form.ingredients, { 'attr' : { 'class': 'd-block mb-3 form-control mt-3' }}) }}
+		{{ form_errors(form.ingredients) }}
 		{{ form_label(form.description) }}
 		{{ form_widget(form.description, { 'attr' : { 'class': 'd-block mb-3 form-control mt-3' }}) }}
 		{{ form_errors(form.description) }}

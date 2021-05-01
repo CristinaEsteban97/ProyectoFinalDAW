@@ -177,3 +177,27 @@
   opacity: 1;
 }
 
+/* Recipe */
+
+.white-space{
+  white-space: pre-line;
+}
+
+/* Category Recipies */
+
+.star_height{
+  height: 15px;
+}
+
+.fit{
+  min-height: 60%;
+  max-height: 60%;
+}
+
+.text-justify{
+  text-align: justify;
+}    
+
+
+
+

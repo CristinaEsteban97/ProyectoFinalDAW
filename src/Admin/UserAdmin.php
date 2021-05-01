@@ -10,7 +10,13 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
+use Symfony\Component\Security\Core\Encoder\BCryptPassword;
+use Symfony\Component\Security\Core\Encoder\BCryptPasswordEncoder;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 final class UserAdmin extends AbstractAdmin
 {
@@ -50,7 +56,20 @@ final class UserAdmin extends AbstractAdmin
                 'multiple' => true,
                 'choices' => ['ROLE_USER' => 'ROLE_USER', 'ROLE_ADMIN' => 'ROLE_ADMIN']
             ])
-            ->add('password',null,['label' =>'Contraseña'])
+            ->add('password', RepeatedType::class, array(
+                'type' => PasswordType::class,
+                'first_options' => array('label' => 'Contraseña'),
+                'second_options' => array('label' => 'Repite contraseña'),
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Por favor introduce una contraseña',
+                    ]),
+                    new Length([
+                        'min' => 6,
+                        'minMessage' => 'Tu contraseña debe tener al menos {{ limit }} caracteres',
+                        'max' => 4096,
+                    ]),
+                ],    ))
             ->add('username',null,['label' =>'Nombre de usuario'])
             ;
     }
@@ -63,5 +82,23 @@ final class UserAdmin extends AbstractAdmin
             ->add('password',null,['label' =>'Contraseña'])
             ->add('username',null,['label' =>'Nombre de usuario '])
             ;
+    }
+
+    public function preUpdate($object) {
+        $uniqid = $this->getRequest()->query->get('uniqid');
+        $encoder = new BCryptPasswordEncoder(13);
+        $formData = $this->getRequest()->request->get($uniqid);
+        if(array_key_exists('password', $formData) && $formData['password'] !== null && strlen($formData['password']['first' ]) > 0) {
+            $object->setPassword($encoder->encodePassword($formData['password']['first' ],$object->getSalt()));
+        }
+    }
+
+    public function prePersist($object) {
+        $plainPassword = $object->getPassword();
+        $container = $this->getConfigurationPool()->getContainer();
+        $encoder = $container->get('security.password_encoder');
+        $encoded = $encoder->encodePassword($object, $plainPassword);
+    
+        $object->setPassword($encoded);
     }
 }

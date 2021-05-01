@@ -70,6 +70,7 @@ final class RecipeAdmin extends AbstractAdmin
             ->add('title',null,['label' =>'Título'])
             // ->add('image', FileType::class, $fileFormOptions)
             ->add('description',null,['label' =>'Descripción'])
+            ->add('ingredients',null,['label' =>'Ingredientes'])
             ->add('score',null,['label' =>'Puntuación'])
             ->add('visible')
             ;

@@ -27,7 +27,10 @@ class UploadRecipesType extends AbstractType
                 'label' => 'Imagen',
             ])
             ->add('description',TextareaType::class,[
-                'label' => 'Descripción',
+                'label' => 'Pasos',
+            ])
+            ->add('ingredients',TextareaType::class,[
+                'label' => 'Ingredientes',
             ])
             ->add('categories',EntityType::class,[
                 'class' => Category::class,

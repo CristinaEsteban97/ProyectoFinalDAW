@@ -73,7 +73,7 @@ class RecipeController extends AbstractController
     }
 
     /**
-     * @Route("/receta/{id}", name="recipe_show", methods={"GET"})
+     * @Route("/receta/{title}", name="recipe_show", methods={"GET"})
      */
     public function show(Recipe $recipe): Response
     {
@@ -83,7 +83,7 @@ class RecipeController extends AbstractController
     }
 
     /**
-     * @Route("/receta/{id}/editar", name="recipe_edit", methods={"GET","POST"})
+     * @Route("/receta/{title}/editar", name="recipe_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Recipe $recipe): Response
     {
@@ -103,7 +103,7 @@ class RecipeController extends AbstractController
     }
 
     /**
-     * @Route("/receta/{id}/borrar", name="recipe_delete", methods={"DELETE"})
+     * @Route("/receta/{title}/borrar", name="recipe_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Recipe $recipe): Response
     {
