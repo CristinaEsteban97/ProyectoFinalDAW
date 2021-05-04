@@ -38,26 +38,13 @@ class UploadRecipesType extends AbstractType
             ])
             ->add('description',TextareaType::class,[
                 'label' => 'Pasos',
+                'label_attr' => ['class' => "mt-3"]
+
             ])
             ->add('ingredients', CKEditorType::Class, array(
                 'label' => 'Ingredientes',
-                'config' => array(
-                    'stylesSet' => 'my_styles',
-                ),
-            )
-            
-            // [
-            //     'label_attr' => ["mt-3"],
-            //     'attr' => array(
-            //         'class' => 'mt-3'
-            //     ),           
-                // 'config' => [
-                //     'uiColor' => "#000000",
-                //     'required' => true
-                // ]
-            )
-       
-;
+                'label_attr' => ['class' => "mb-3"]
+            ));
     }
 
     public function configureOptions(OptionsResolver $resolver)

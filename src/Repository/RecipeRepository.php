@@ -30,4 +30,17 @@ class RecipeRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
      }
+
+     public function findRecipesBySearch($text)
+     {
+         return $this->createQueryBuilder('r')
+            ->andWhere('r.visible = 1')
+            ->andWhere('r.title LIKE :text')
+            ->setParameter('text', '%'.$text.'%')
+            ->orderBy('r.id','DESC')
+            ->getQuery()
+            ->getResult();
+     }
+
+
 }

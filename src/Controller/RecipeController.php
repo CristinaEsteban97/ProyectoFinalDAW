@@ -16,6 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Form\UploadRecipesType;
 use App\Form\CommentType;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use App\Controller\ObjectManager;
 
 
 class RecipeController extends AbstractController
@@ -95,7 +96,6 @@ class RecipeController extends AbstractController
             $entityManager->persist($comment);
             $entityManager->flush();  
 
-            // return $this->redirect($request->getUri());
             $this->addFlash('success', '¡Comentario registrado con exito! Tu comentario estará visible una vez que el administrador lo revise.');
             
      

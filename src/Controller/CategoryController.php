@@ -18,9 +18,7 @@ class CategoryController extends AbstractController
         $recipes = $recipeRepository->findRecipesByCategory($name);
         $no_recipes = '';
         
-        if($recipes){  // If there are recipes of this category with visible = 0
-
-        }else{  // If there aren't recipes of this category with visible = 0
+        if(!$recipes){  
             $no_recipes = 'No existen aún recetas de la categoria';
         }
         
