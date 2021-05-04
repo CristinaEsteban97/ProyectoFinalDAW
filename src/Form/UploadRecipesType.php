@@ -36,12 +36,18 @@ class UploadRecipesType extends AbstractType
                 'multiple' => true,
                 'expanded' => false
             ])
-            ->add('description',TextareaType::class,[
+            ->add('description',CKEditorType::Class,[
+                'config' => [
+                    'toolbar' =>  'my_toolbar_2',
+                ],              
                 'label' => 'Pasos',
-                'label_attr' => ['class' => "mt-3"]
+                'label_attr' => ['class' => "mt-3 mb-3"]
 
             ])
             ->add('ingredients', CKEditorType::Class, array(
+                'config' => [
+                    'toolbar' =>  'my_toolbar_1',
+                ],                 
                 'label' => 'Ingredientes',
                 'label_attr' => ['class' => "mb-3"]
             ));
