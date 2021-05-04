@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CommentRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -14,18 +16,19 @@ class Comment
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="parent")
      */
     private $id;
 
-    /**
-     * @ORM\OneToOne(targetEntity="User")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     /**
+     *  @ORM\ManyToOne(targetEntity="User")
+     *  @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
 
     /**
-     * @ORM\OneToOne(targetEntity="Recipe")
-     * @ORM\JoinColumn(name="recipe_id", referencedColumnName="id", onDelete="CASCADE")
+     *  @ORM\ManyToOne(targetEntity="Recipe")
+     *  @ORM\JoinColumn(name="recipe_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $recipe;
 
@@ -38,6 +41,17 @@ class Comment
      * @ORM\Column(type="boolean")
      */
     private $visible;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Comment", inversedBy="id")
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
+     */
+    private $parent;
+
+    public function __construct()
+    {
+        $this->id = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -102,4 +116,18 @@ class Comment
     {
         return $this->getText();
     }
+
+    public function getParent(): ?self
+    {
+        return $this->parent;
+    }
+
+    public function setParent(?self $parent): self
+    {
+        $this->parent = $parent;
+
+        return $this;
+    }
+
+
 }

@@ -1,0 +1,19 @@
+fos_ck_editor:
+    configs:
+        my_config_1:
+            toolbar: "my_toolbar_1"
+            uiColor: "#e2e2e2"
+            my_config:
+                stylesSet: "my_styles"
+    styles:
+        my_styles:
+            - { name: "CSS Style", element: "div", attributes: { class: "mt-3" }}
+            - { name: "Widget Style", type: widget, widget: "my_widget", attributes: { class: "mt-3" }}
+
+    toolbars:
+        configs:
+            my_toolbar_1: [ [ "NumberedList", "BulletedList", "Undo", "Redo","SelectAll"] ]
+  
+twig:
+    form_themes:
+        - '@FOSCKEditor/Form/ckeditor_widget.html.twig'

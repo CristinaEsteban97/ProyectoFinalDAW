@@ -1,5 +1,5 @@
 <div class="content pt-4">
-	<div class="content1 pt-4">
+	<div class="content1 pt-5">
 		{% for message in app.flashes('success') %}
 			<div class="alert alert-success  mb-4">
 				{{ message }}
@@ -14,15 +14,16 @@
 		{{ form_label(form.image) }}
 		{{ form_widget(form.image, { 'attr' : { 'class': 'd-block mb-3 form-control mt-3' }}) }}
 		{{ form_errors(form.image) }}
+		{{ form_label(form.categories) }}
+		{{ form_widget(form.categories, { 'attr' : { 'class': 'd-block mb-3 form-control mt-3' }}) }}
+		{{ form_errors(form.categories) }}
 		{{ form_label(form.ingredients) }}
-		{{ form_widget(form.ingredients, { 'attr' : { 'class': 'd-block mb-3 form-control mt-3' }}) }}
+		{{ form_widget(form.ingredients) }}
 		{{ form_errors(form.ingredients) }}
 		{{ form_label(form.description) }}
 		{{ form_widget(form.description, { 'attr' : { 'class': 'd-block mb-3 form-control mt-3' }}) }}
 		{{ form_errors(form.description) }}
-		{{ form_label(form.categories) }}
-		{{ form_widget(form.categories, { 'attr' : { 'class': 'd-block mb-3 form-control mt-3' }}) }}
-		{{ form_errors(form.categories) }}
+
 		<button tye="submit" class="button-steelblue btn-sm btn-sm mt-3">Subir</button>
 		{{ form_end(form) }}
 	</div>

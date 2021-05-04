@@ -14,6 +14,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
+
 
 class UploadRecipesType extends AbstractType
 {
@@ -26,12 +28,6 @@ class UploadRecipesType extends AbstractType
             ->add('image',FileType::class,[
                 'label' => 'Imagen',
             ])
-            ->add('description',TextareaType::class,[
-                'label' => 'Pasos',
-            ])
-            ->add('ingredients',TextareaType::class,[
-                'label' => 'Ingredientes',
-            ])
             ->add('categories',EntityType::class,[
                 'class' => Category::class,
                 'mapped' => true,
@@ -40,6 +36,27 @@ class UploadRecipesType extends AbstractType
                 'multiple' => true,
                 'expanded' => false
             ])
+            ->add('description',TextareaType::class,[
+                'label' => 'Pasos',
+            ])
+            ->add('ingredients', CKEditorType::Class, array(
+                'label' => 'Ingredientes',
+                'config' => array(
+                    'stylesSet' => 'my_styles',
+                ),
+            )
+            
+            // [
+            //     'label_attr' => ["mt-3"],
+            //     'attr' => array(
+            //         'class' => 'mt-3'
+            //     ),           
+                // 'config' => [
+                //     'uiColor' => "#000000",
+                //     'required' => true
+                // ]
+            )
+       
 ;
     }
 

@@ -5,13 +5,16 @@ namespace App\Controller;
 use App\Entity\Recipe;
 use App\Entity\Category;
 use App\Entity\User;
+use App\Entity\Comment;
 use App\Form\RecipeType;
 use App\Repository\RecipeRepository;
+use App\Repository\CommentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\UploadRecipesType;
+use App\Form\CommentType;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 
@@ -74,11 +77,37 @@ class RecipeController extends AbstractController
 
     /**
      * @Route("/receta/{title}", name="recipe_show", methods={"GET"})
+     * @Route("/receta/{title}", name="recipe_show")
      */
-    public function show(Recipe $recipe): Response
-    {
+    public function show(Recipe $recipe,RecipeRepository $recipeRepository,CommentRepository $commentRepository, Request $request): Response
+    { 
+        $comment = new Comment();
+
+        $comment_form = $this->createForm(CommentType::class, $comment);
+        $comment_form->handleRequest($request);
+
+        if ($comment_form->isSubmitted() && $comment_form->isValid()) {
+            $comment->setVisible(0);
+            $user = $this->getUser();
+            $comment->setUser($user);
+            $comment->setRecipe($recipe);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($comment);
+            $entityManager->flush();  
+
+            // return $this->redirect($request->getUri());
+            $this->addFlash('success', '¡Comentario registrado con exito! Tu comentario estará visible una vez que el administrador lo revise.');
+            
+     
+        }
+
+        $comments = $commentRepository->findCommentsByRecipe($recipe);
+        
+
         return $this->render('recipe/show/show.html.twig', [
             'recipe' => $recipe,
+            'comment_form' => $comment_form->createView(),
+            'comments' => $comments
         ]);
     }
 

@@ -15,14 +15,5 @@
 					<a href="{{ path('recipe_show', {'id': recipe.id}) }}" class="btn btn-primary w-25">Ver detalles</a>
 				</div>
 			</div>
-
-
-		{% else %}
-			<tr>
-				<td colspan="7">no records found</td>
-			</tr>
-		{% endfor %}
 	</div>
-
-	<a href="{{ path('recipe_new') }}">Create new</a>
 {% endblock %}
