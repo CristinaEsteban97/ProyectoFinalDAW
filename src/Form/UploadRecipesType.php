@@ -15,6 +15,7 @@ use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 
 class UploadRecipesType extends AbstractType
@@ -24,9 +25,19 @@ class UploadRecipesType extends AbstractType
         $builder
             ->add('title',TextType::class,[
                 'label' => 'Título',
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Por favor introduce un título',
+                    ]),
+                ],
             ])
             ->add('image',FileType::class,[
                 'label' => 'Imagen',
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Por favor selecciona una imagen',
+                    ]),
+                ],
             ])
             ->add('categories',EntityType::class,[
                 'class' => Category::class,
@@ -34,14 +45,24 @@ class UploadRecipesType extends AbstractType
                 'label' => 'Categoria',
                 'choice_label' => 'name',
                 'multiple' => true,
-                'expanded' => false
+                'expanded' => false,
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Por favor selecciona una categoria',
+                    ]),
+                ],
             ])
             ->add('description',CKEditorType::Class,[
                 'config' => [
                     'toolbar' =>  'my_toolbar_2',
                 ],              
                 'label' => 'Pasos',
-                'label_attr' => ['class' => "mt-3 mb-3"]
+                'label_attr' => ['class' => "mt-3 mb-3"],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Por favor introduce los pasos',
+                    ]),
+                ],
 
             ])
             ->add('ingredients', CKEditorType::Class, array(
@@ -49,7 +70,12 @@ class UploadRecipesType extends AbstractType
                     'toolbar' =>  'my_toolbar_1',
                 ],                 
                 'label' => 'Ingredientes',
-                'label_attr' => ['class' => "mb-3"]
+                'label_attr' => ['class' => "mb-3"],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Por favor introduce los ingredientes',
+                    ]),
+                ],
             ));
     }
 

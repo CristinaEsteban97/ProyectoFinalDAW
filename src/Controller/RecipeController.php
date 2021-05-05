@@ -21,15 +21,15 @@ use App\Controller\ObjectManager;
 
 class RecipeController extends AbstractController
 {
-    /**
-     * @Route("/recetas", name="recipes")
-     */
-    public function index(RecipeRepository $recipeRepository): Response
-    {
-        return $this->render('recipe/index.html.twig', [
-            'recipes' => $recipeRepository->findBy(['visible' => 'true'])
-        ]);
-    }
+    // /**
+    //  * @Route("/recetas", name="recipes")
+    //  */
+    // public function index(RecipeRepository $recipeRepository): Response
+    // {
+    //     return $this->render('recipe/index.html.twig', [
+    //         'recipes' => $recipeRepository->findBy(['visible' => 'true'])
+    //     ]);
+    // }
 
     /**
      * @Route("/subir_receta", name="recipe_new")
@@ -97,8 +97,7 @@ class RecipeController extends AbstractController
             $entityManager->flush();  
 
             $this->addFlash('success', '¡Comentario registrado con exito! Tu comentario estará visible una vez que el administrador lo revise.');
-            
-     
+            return $this->redirect($request->getUri());     
         }
 
         $comments = $commentRepository->findCommentsByRecipe($recipe);

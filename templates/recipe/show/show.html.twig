@@ -14,7 +14,7 @@
 
 		<h1 class="text-center pt-5">{{ recipe.title }}</h1>
 		<div class="d-flex justify-content-center p-5"><img class="w-50" src="../uploads/images/{{recipe.image}}"></div>
-		<h4 class="text-center">Ingredientes</h4>
+		<h4 class="text-center mb-5">Ingredientes</h4>
 		<div class="d-flex justify-content-center">
 			<p class="white-space text-justify">
 				{% autoescape false %}
@@ -23,9 +23,9 @@
 			</p>
 			<p></p>
 		</div>
-		<h4 class="text-center">Pasos</h4>
+		<h4 class="text-center mt-5">Pasos</h4>
 		<div class="d-flex justify-content-center p-5">
-			<p class="white-space text-justify">
+			<p class="white-space">
 				{% autoescape false %}
 					{{ recipe.description }}
 				{% endautoescape %}
@@ -36,7 +36,7 @@
 
 		{% if is_granted('ROLE_USER') %}
 			<div class="row p-5 pb-2">
-				<div class="cold-md-12">
+				<div class="">
 					<div class="card my-4">
 						<h5 class="card-header">Deja tu comentario</h5>
 						<div class="card-body">
@@ -53,15 +53,26 @@
 			</div>
 		{% endif %}
 
-		{% for comment in comments %}
-			<div class="media p-5 pt-1">
-				<div class="media-body">
-					<h5 class="mt-0">{{comment.user.username}}</h5>
-					{{comment.text}}
+		{% if comments == false %}
+			<p class="text-center p-3">No hay comentarios para esta receta</p>
+		{% else %}
+			{% for comment in comments %}
+				<div class="media p-5 pt-1">
+					<div class="media-body">
+						<h5 class="mt-0">{{comment.user.username}}</h5>
+						{{comment.text}}
+						{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+							{% if(comment.user.id== app.user.id) %}
+								<a href="{{path('comment_delete', {'id': comment.id })}}" class="text-decoration-none ">Eliminar</a>
+							{% endif %}
+						{% endif %}
+
+					</div>
 				</div>
-			</div>
-		{% endfor %}
+			{% endfor %}
+
+		{% endif %}
 
 
 	</body>
-</html>{% endblock %}
+</body></html>{% endblock %}

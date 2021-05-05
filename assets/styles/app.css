@@ -185,10 +185,6 @@
 
 /* Category Recipies */
 
-.star_height{
-  height: 15px;
-}
-
 .fit{
   min-height: 60%;
   max-height: 60%;
@@ -199,5 +195,13 @@
 }    
 
 
+/* Recipe */
 
+ol > li {
+  padding: 10px;
+  text-align: justify;
+}
 
+.overflow-x {
+  overflow-x: hidden;
+}

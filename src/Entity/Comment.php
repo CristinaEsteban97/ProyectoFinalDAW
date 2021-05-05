@@ -44,7 +44,7 @@ class Comment
     
     /**
      * @ORM\ManyToOne(targetEntity="Comment", inversedBy="id")
-     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id",onDelete="CASCADE")
      */
     private $parent;
 
