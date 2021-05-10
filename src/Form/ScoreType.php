@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Comment;
+use App\Entity\Score;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -11,20 +11,23 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class CommentType extends AbstractType
+class ScoreType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('text',TextareaType::class)
-            ->add('visible',HiddenType::class)
             ->add('user',HiddenType::class)
             ->add('recipe',HiddenType::class)
-            ->add('parent',HiddenType::class,[
-                'mapped' => false
+            ->add('score',HiddenType::class,[
+                'mapped' => false,
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Campo obligatorio',
+                    ]),
+                ],
             ])
             ->add('save', SubmitType::class, [
-                'label' => "Comentar",
+                'label' => "Valora",
                 'attr' => ['class' => 'save'],
             ]);
         ;
@@ -33,7 +36,7 @@ class CommentType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Comment::class,
+            'data_class' => Score::class,
         ]);
     }
 }

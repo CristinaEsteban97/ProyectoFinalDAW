@@ -205,3 +205,13 @@ ol > li {
 .overflow-x {
   overflow-x: hidden;
 }
+
+.color-dimgrey{
+  color: dimgrey;
+}
+
+.quote{
+  color: grey;
+    border-left: 1px solid darkslategrey;
+    font-style: italic
+}

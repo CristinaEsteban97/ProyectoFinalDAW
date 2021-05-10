@@ -6,6 +6,7 @@ use App\Entity\Recipe;
 use App\Entity\Category;
 use App\Entity\User;
 use App\Entity\Comment;
+use App\Entity\Score;
 use App\Form\RecipeType;
 use App\Repository\RecipeRepository;
 use App\Repository\CommentRepository;
@@ -15,8 +16,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\UploadRecipesType;
 use App\Form\CommentType;
+use App\Form\ScoreType;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use App\Controller\ObjectManager;
+use DateTime;
 
 
 class RecipeController extends AbstractController
@@ -83,16 +86,47 @@ class RecipeController extends AbstractController
     public function show(Recipe $recipe,RecipeRepository $recipeRepository,CommentRepository $commentRepository, Request $request): Response
     { 
         $comment = new Comment();
+        $score = new Score();
 
         $comment_form = $this->createForm(CommentType::class, $comment);
         $comment_form->handleRequest($request);
+        
+        $score_form = $this->createForm(ScoreType::class, $score);
+        $score_form->handleRequest($request);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+
+        if ($score_form->isSubmitted() && $score_form->isValid()) {
+            $score_value = $score_form->get("score")->getData();
+            
+            if($score_value != null){
+                $score->setScore($score_value); 
+                $score->setRecipe($recipe); 
+                $score->setUser($user);
+                $entityManager->persist($score); 
+                $entityManager->flush();  
+
+                $this->addFlash('success', 'Puntuación registrada con exito! Tu puntuación estará visible una vez que el administrador lo revise.');
+                return $this->redirect($request->getUri());  
+            } 
+        }   
 
         if ($comment_form->isSubmitted() && $comment_form->isValid()) {
+
+            $parentid = $comment_form->get("parent")->getData();
+
+            if($parentid != null){
+                $parent = $entityManager->getRepository(Comment::class)->find($parentid);
+            }
+
             $comment->setVisible(0);
-            $user = $this->getUser();
+            $comment->setParent($parent ?? null);
             $comment->setUser($user);
             $comment->setRecipe($recipe);
-            $entityManager = $this->getDoctrine()->getManager();
+            $comment->setCreatedAt(new DateTime());
+         
+
             $entityManager->persist($comment);
             $entityManager->flush();  
 
@@ -105,6 +139,7 @@ class RecipeController extends AbstractController
 
         return $this->render('recipe/show/show.html.twig', [
             'recipe' => $recipe,
+            'score_form' => $score_form->createView(),
             'comment_form' => $comment_form->createView(),
             'comments' => $comments
         ]);

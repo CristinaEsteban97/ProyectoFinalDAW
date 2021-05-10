@@ -24,7 +24,7 @@ class Score
 
     /**
      * @ORM\OneToOne(targetEntity="Recipe")
-     * @ORM\JoinColumn(name="recipe_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="recipe_id", referencedColumnName="id" ,nullable=false)
      */
     private $recipe;
 

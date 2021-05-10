@@ -12,7 +12,7 @@
 			</div>
 		{% endfor %}
 
-		<h1 class="text-center pt-5">{{ recipe.title }}</h1>
+		<h1 class="text-center pt-5" id="title">{{ recipe.title }}</h1>
 		<div class="d-flex justify-content-center p-5"><img class="w-50" src="../uploads/images/{{recipe.image}}"></div>
 		<h4 class="text-center mb-5">Ingredientes</h4>
 		<div class="d-flex justify-content-center">
@@ -32,14 +32,35 @@
 			</p>
 		</div>
 
-		<h4 class="text-center">Comentarios</h4>
+		{% if is_granted('ROLE_USER') %}
+			<h4 class="text-center pb-2">Valora la receta</h4>
+
+			{% form_theme score_form 'errors_form.html.twig' %}
+			{{ form_start(score_form) }}
+			<div class="form-group text-center">
+				<div class="stars pt-4 pb-2">
+					<i class="lar la-star" data-value="1"></i>
+					<i class="lar la-star" data-value="2"></i>
+					<i class="lar la-star" data-value="3"></i>
+					<i class="lar la-star" data-value="4"></i>
+					<i class="lar la-star" data-value="5"></i>
+				</div>
+				{{ form_errors(score_form) }}
+				{{ form_widget(score_form.save, { 'attr' : { 'class': 'mt-3 mb-5 button-steelblue btn-sm' }}) }}
+			</div>
+			{{ form_end(score_form) }}
+		{% endif %}
+
+
+		<h4 class="text-center pb-5">Comentarios</h4>
 
 		{% if is_granted('ROLE_USER') %}
 			<div class="row p-5 pb-2">
 				<div class="">
-					<div class="card my-4">
+					<div class="card my-4" id="addComment">
 						<h5 class="card-header">Deja tu comentario</h5>
 						<div class="card-body">
+							{% form_theme comment_form 'errors_form.html.twig' %}
 							{{ form_start(comment_form) }}
 							<div class="form-group">
 								{{ form_widget(comment_form.text, { 'attr' : { 'class': 'form-control' }}) }}
@@ -54,21 +75,47 @@
 		{% endif %}
 
 		{% if comments == false %}
-			<p class="text-center p-3">No hay comentarios para esta receta</p>
+			<p class="text-center">No hay comentarios para esta receta.</p>
 		{% else %}
+
 			{% for comment in comments %}
 				<div class="media p-5 pt-1">
-					<div class="media-body">
-						<h5 class="mt-0">{{comment.user.username}}</h5>
-						{{comment.text}}
-						{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-							{% if(comment.user.id== app.user.id) %}
-								<a href="{{path('comment_delete', {'id': comment.id })}}" class="text-decoration-none ">Eliminar</a>
-							{% endif %}
-						{% endif %}
+					<div class="card" id={{comment.id}}>
+						<div class="card-header d-flex justify-content-between">
+							<div class="fw-bold">{{comment.user.username}}</div>
+							<div class="color-dimgrey">{{comment.createdAt | date("d/m/Y H:i")}}</div>
+						</div>
+						<div class="card-body">
 
+							{% if comment.parent == null %}
+								<p class="card-text">{{comment.text}}
+								</p>
+
+							{% else %}
+								{% autoescape false %}
+									<blockquote class="quote p-2" contenteditable="false">
+										{{comment.parent}}
+									</blockquote>
+									<p class="card-text">
+										{{comment.text}}
+									</p>
+
+								{% endautoescape %}
+							{% endif %}
+							{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+								{% if(comment.user.id== app.user.id) %}
+									<a href="{{path('comment_delete', {'id': comment.id })}}" class="text-decoration-none ">Eliminar</a>
+									<a class="text-decoration-none px-4" data-reply data-id="{{comment.id}}" onclick="displayReplyForm({{comment.id}})">Responder</a>
+								{% endif %}
+							{% endif %}
+
+						</div>
 					</div>
+
+
 				</div>
+
+
 			{% endfor %}
 
 		{% endif %}

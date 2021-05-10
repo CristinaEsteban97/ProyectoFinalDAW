@@ -46,11 +46,6 @@ class Recipe
     private $user;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $score;
-
-    /**
      * @ORM\Column(type="boolean")
      */
     private $visible;
@@ -122,18 +117,6 @@ class Recipe
     public function setUser($user)
     {
         $this->user = $user;
-
-        return $this;
-    }
-
-    public function getScore(): ?int
-    {
-        return $this->score;
-    }
-
-    public function setScore(?int $score): self
-    {
-        $this->score = $score;
 
         return $this;
     }

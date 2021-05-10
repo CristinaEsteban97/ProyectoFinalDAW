@@ -48,6 +48,11 @@ class Comment
      */
     private $parent;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+  
     public function __construct()
     {
         $this->id = new \Doctrine\Common\Collections\ArrayCollection();
@@ -128,6 +133,20 @@ class Comment
 
         return $this;
     }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    
 
 
 }
