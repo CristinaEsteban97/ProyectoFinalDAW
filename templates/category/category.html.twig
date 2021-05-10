@@ -19,6 +19,7 @@
 				{{ render(controller('App\\Controller\\SearchController::searchBar')) }}
 			</div>
 			<div class="d-flex w-100 flex-wrap pt-4 justify-content-center">
+			{% set cont = 0 %}
 				{% for recipe in recipes %}
 					<div class="card m-4 w-25">
 						<img src="../uploads/images/{{recipe.image}}" class="card-img-top fit">
@@ -27,9 +28,10 @@
 								{{recipe.title |capitalize}}
 							</h5>
 							<div class="d-flex text-center justify-content-center p-2">
-								<img class="ml-2" style="height: 15px" src="../build/images/star.svg">
+								<p class="lh-1 ps-2">{{totalScores[cont]}}</p>
 
-								<p class="lh-1 ps-2">4.5</p>
+								<img class="ml-2 px-2" style="height: 15px" src="../build/images/star.svg">
+
 							</div>
 
 							<a href="{{path('recipe_show', {'title': recipe.title })}}" class="d-flex justify-content-center text-decoration-none ">
@@ -38,6 +40,8 @@
 							</a>
 						</div>
 					</div>
+					     {% set cont = cont+1 %}
+
 				{% endfor %}
 			{% endif %}
 

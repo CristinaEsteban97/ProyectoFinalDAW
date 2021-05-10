@@ -9,6 +9,7 @@ use App\Entity\Comment;
 use App\Entity\Score;
 use App\Form\RecipeType;
 use App\Repository\RecipeRepository;
+use App\Repository\ScoreRepository;
 use App\Repository\CommentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,16 +25,6 @@ use DateTime;
 
 class RecipeController extends AbstractController
 {
-    // /**
-    //  * @Route("/recetas", name="recipes")
-    //  */
-    // public function index(RecipeRepository $recipeRepository): Response
-    // {
-    //     return $this->render('recipe/index.html.twig', [
-    //         'recipes' => $recipeRepository->findBy(['visible' => 'true'])
-    //     ]);
-    // }
-
     /**
      * @Route("/subir_receta", name="recipe_new")
      */
@@ -44,7 +35,7 @@ class RecipeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $recipe->setVisible(0);
+            $recipe->setVisible(1);
             $user = $this->getUser();
             $recipe->setUser($user);
 
@@ -83,7 +74,7 @@ class RecipeController extends AbstractController
      * @Route("/receta/{title}", name="recipe_show", methods={"GET"})
      * @Route("/receta/{title}", name="recipe_show")
      */
-    public function show(Recipe $recipe,RecipeRepository $recipeRepository,CommentRepository $commentRepository, Request $request): Response
+    public function show(Recipe $recipe,RecipeRepository $recipeRepository,ScoreRepository $scoreRepository,CommentRepository $commentRepository, Request $request): Response
     { 
         $comment = new Comment();
         $score = new Score();
@@ -99,34 +90,36 @@ class RecipeController extends AbstractController
 
         if ($score_form->isSubmitted() && $score_form->isValid()) {
             $score_value = $score_form->get("score")->getData();
+
+            $isScore = $scoreRepository->findBy(array('user' => $user , 'recipe' => $recipe->getId()));
             
-            if($score_value != null){
+            if($isScore == [] ){
                 $score->setScore($score_value); 
                 $score->setRecipe($recipe); 
                 $score->setUser($user);
                 $entityManager->persist($score); 
                 $entityManager->flush();  
 
-                $this->addFlash('success', 'Puntuación registrada con exito! Tu puntuación estará visible una vez que el administrador lo revise.');
+                $this->addFlash('success', '¡Puntuación registrada con exito!');
                 return $this->redirect($request->getUri());  
-            } 
+            }else{
+                $this->addFlash('danger', 'Ya existe una puntuación registrada para esta receta con este usuario.');
+                return $this->redirect($request->getUri()); 
+            }              
         }   
 
         if ($comment_form->isSubmitted() && $comment_form->isValid()) {
-
             $parentid = $comment_form->get("parent")->getData();
 
             if($parentid != null){
                 $parent = $entityManager->getRepository(Comment::class)->find($parentid);
             }
 
-            $comment->setVisible(0);
+            $comment->setVisible(1);
             $comment->setParent($parent ?? null);
             $comment->setUser($user);
             $comment->setRecipe($recipe);
-            $comment->setCreatedAt(new DateTime());
-         
-
+            $comment->setCreatedAt(new DateTime());        
             $entityManager->persist($comment);
             $entityManager->flush();  
 
@@ -134,8 +127,7 @@ class RecipeController extends AbstractController
             return $this->redirect($request->getUri());     
         }
 
-        $comments = $commentRepository->findCommentsByRecipe($recipe);
-        
+        $comments = $commentRepository->findCommentsByRecipe($recipe);       
 
         return $this->render('recipe/show/show.html.twig', [
             'recipe' => $recipe,

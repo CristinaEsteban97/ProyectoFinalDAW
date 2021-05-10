@@ -11,7 +11,6 @@ fos_ck_editor:
             my_toolbar_1: [ [ "BulletedList", "Undo", "Redo","SelectAll"] ]
             my_toolbar_2: [ [ "NumberedList", "Undo", "Redo","SelectAll"] ]
 
-  
 twig:
     form_themes:
         - '@FOSCKEditor/Form/ckeditor_widget.html.twig'

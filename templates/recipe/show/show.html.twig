@@ -11,6 +11,11 @@
 				{{ message }}
 			</div>
 		{% endfor %}
+		{% for message in app.flashes('danger') %}
+			<div class="alert alert-danger">
+				{{ message }}
+			</div>
+		{% endfor %}
 
 		<h1 class="text-center pt-5" id="title">{{ recipe.title }}</h1>
 		<div class="d-flex justify-content-center p-5"><img class="w-50" src="../uploads/images/{{recipe.image}}"></div>
@@ -38,7 +43,7 @@
 			{% form_theme score_form 'errors_form.html.twig' %}
 			{{ form_start(score_form) }}
 			<div class="form-group text-center">
-				<div class="stars pt-4 pb-2">
+				<div class="stars pt-4 pb-2 fs-3 text">
 					<i class="lar la-star" data-value="1"></i>
 					<i class="lar la-star" data-value="2"></i>
 					<i class="lar la-star" data-value="3"></i>
@@ -55,7 +60,7 @@
 		<h4 class="text-center pb-5">Comentarios</h4>
 
 		{% if is_granted('ROLE_USER') %}
-			<div class="row p-5 pb-2">
+			<div class="p-5 pb-2">
 				<div class="">
 					<div class="card my-4" id="addComment">
 						<h5 class="card-header">Deja tu comentario</h5>
