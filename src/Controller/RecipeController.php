@@ -61,7 +61,7 @@ class RecipeController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('success', '¡Receta subida correctamente!');
-
+            return $this->redirect($request->getUri()); 
         }
 
         return $this->render('recipe/new/new.html.twig', [
@@ -110,7 +110,7 @@ class RecipeController extends AbstractController
 
         if ($comment_form->isSubmitted() && $comment_form->isValid()) {
             $parentid = $comment_form->get("parent")->getData();
-
+    
             if($parentid != null){
                 $parent = $entityManager->getRepository(Comment::class)->find($parentid);
             }
@@ -123,7 +123,7 @@ class RecipeController extends AbstractController
             $entityManager->persist($comment);
             $entityManager->flush();  
 
-            $this->addFlash('success', '¡Comentario registrado con exito! Tu comentario estará visible una vez que el administrador lo revise.');
+            $this->addFlash('success', '¡Comentario registrado con exito!');
             return $this->redirect($request->getUri());     
         }
 

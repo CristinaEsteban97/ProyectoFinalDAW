@@ -83,6 +83,7 @@ class UploadRecipesType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Recipe::class,
+            'cascade_validation' => true,
         ]);
     }
 }
