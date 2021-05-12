@@ -82,7 +82,7 @@
 }
 
 .bg-vegetariano {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/vegetariano.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/build/images/vegetariano.jpg);
 }
 
 .bg-vegetariano:hover{
@@ -90,7 +90,7 @@
 }
 
 .bg-vegano {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/vegano.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/build/images/vegano.jpg);
 }
 
 .bg-vegano:hover{
@@ -98,7 +98,7 @@
 }
 
 .bg-carnes {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/carnes.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/build/images/carnes.jpg);
 }
 
 .bg-carnes:hover{
@@ -106,7 +106,7 @@
 }
 
 .bg-arroces {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/arroces.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/build/images/arroces.jpg);
 }
 
 .bg-arroces:hover{
@@ -114,7 +114,7 @@
 }
 
 .bg-pasta {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/pasta.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/build/images/pasta.jpg);
 }
 
 .bg-pasta:hover{
@@ -122,7 +122,7 @@
 }
 
 .bg-celiacos {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/celiacos.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/build/images/celiacos.jpg);
 }
 
 .bg-celiacos:hover{
@@ -130,7 +130,7 @@
 }
 
 .bg-bocadillos {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/bocadillos.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/build/images/bocadillos.jpg);
 }
 
 .bg-bocadillos:hover{
@@ -138,7 +138,7 @@
 }
 
 .bg-pescados {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/pescados.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/build/images/pescados.jpg);
 }
 
 .bg-pescados:hover{
@@ -146,7 +146,7 @@
 }
 
 .bg-legumbres {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/legumbres.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/build/images/legumbres.jpg);
 }
 
 .bg-legumbres:hover{
@@ -154,7 +154,7 @@
 }
 
 .bg-verduras {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/verduras.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/build/images/verduras.jpg);
 }
 
 .bg-verduras:hover{
@@ -162,7 +162,7 @@
 }
 
 .bg-ensaladas {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/ensaladas.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/build/images/ensaladas.jpg);
 }
 
 .bg-ensaladas:hover{
@@ -170,7 +170,7 @@
 }
 
 .bg-batidos {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/batidos.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/build/images/batidos.jpg);
 }
 
 .bg-batidos:hover{
