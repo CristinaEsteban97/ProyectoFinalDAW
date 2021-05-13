@@ -28,10 +28,8 @@ class CommentController extends AbstractController
             $entityManager->remove($comment);
             $entityManager->flush();
             $this->addFlash('success', '¡Comentario eliminado correctamente!');
-            return $this->redirectToRoute('recipe_show',array('title' => $comment->getRecipe()->getTitle()));
+            return $this->redirectToRoute('recipe_show',array('title' => $comment->getRecipe()->getTitle()));        
 
-        
-
-            }
+    }
 }
 

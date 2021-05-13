@@ -37,7 +37,6 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('success', '¡Usuario registrado correctamente!');
-
         }
 
         return $this->render('register/register.html.twig', [

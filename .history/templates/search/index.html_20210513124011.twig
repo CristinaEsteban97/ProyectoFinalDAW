@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Búsqueda
+{% endblock %}
+
+{% block body %}
+	<body class="bg-beige">
+		<div class="d-flex w-100 flex-wrap pt-4 justify-content-center">
+			{% if no_recipes %}
+				<div class="p-4">
+					<img class="p-4" src="../build/images/no_plate.svg">
+					<h5 class="text-center">{{ no_recipes}}</h5>
+				</div>
+			{% else %}
+				{% set cont = 0 %}
+				{% for recipe in recipes %}
+					<div class="card m-4 w-25">
+						<img src="../uploads/images/{{recipe.image}}" class="card-img-top fit">
+						<div class="card-body">
+							<h5 class="card-title text-center">
+								{{recipe.title |capitalize}}
+							</h5>
+							<div class="d-flex text-center justify-content-center p-2">
+								<img class="ml-2" style="height: 15px" src="../build/images/star.svg">
+
+								<p class="lh-1 ps-2">{{totalScores[cont]}}</p>
+							</div>
+
+							<a href="{{path('recipe_show', {'title': recipe.title })}}" class="d-flex justify-content-center text-decoration-none">
+								<button type="button" class="button-steelblue btn-sm">Ver más</button>
+							</a>
+						</div>
+					</div>
+					{% set cont = cont+1 %}
+				{% endfor %}
+			{% endif %}
+
+		</div>
+	</body>
+{% endblock %}
