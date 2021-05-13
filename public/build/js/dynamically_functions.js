@@ -1,4 +1,11 @@
 window.onload = () => {
+
+    document.querySelectorAll("[data-reply]").forEach(element => {
+        element.addEventListener("click", function(){
+            document.querySelector("#comment_parent").value = this.dataset.id;
+        });
+    });    
+
     const stars = document.querySelectorAll(".la-star");
     const score = document.querySelector("#score_score");
 
@@ -41,4 +48,9 @@ window.onload = () => {
             }
         }
     }
+    
 }
+function displayReplyForm($id){
+    $( "#comment_text" ).focus();
+}
+
