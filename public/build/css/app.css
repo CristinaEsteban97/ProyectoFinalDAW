@@ -215,3 +215,7 @@ ol > li {
     border-left: 1px solid darkslategrey;
     font-style: italic
 }
+
+.delete_quote{
+  height: 12px;
+}

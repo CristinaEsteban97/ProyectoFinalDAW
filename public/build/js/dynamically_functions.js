@@ -50,7 +50,16 @@ window.onload = () => {
     }
     
 }
-function displayReplyForm($id){
+function displayReplyForm(id){
+    $(".comment_quote").remove();
+    var quote = ($("#"+id).find(".card-text").text()).trim();
+    var blockquote = "<blockquote class='quote comment_quote p-2'>"+quote+"<img src='../build/images/cancel.svg' class ='px-2 delete_quote' onclick='deleteQuote()'></img></blockquote>";
     $( "#comment_text" ).focus();
+    $("#comment_text").before(blockquote);
+}
+
+function deleteQuote(){
+    $( ".comment_quote").remove();
+    $("#comment_parent").val('');
 }
 
