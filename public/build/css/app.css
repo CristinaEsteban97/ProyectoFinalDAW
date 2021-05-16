@@ -1,4 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
+
 /* Home page */
+
+.font-family{
+  font-family: 'Inter', sans-serif;
+}
 
 .padding-06 {
   padding-top: 0.6rem;

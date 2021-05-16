@@ -4,7 +4,7 @@
 		{% block head %}
 			<meta charset="UTF-8">
 			<title>
-				{% block title %}Welcome!
+				{% block title %}Fooddie
 				{% endblock %}
 			</title>
 			{% block stylesheets %}
@@ -27,9 +27,10 @@
 				<header>
 					<nav class="navbar bg-white navbar-inverse z-index">
 						<div class="container-fluid">
-							<div class="navbar-header bg-white d-flex">
-								<a class="navbar-brand" href="{{path("home")}}">NombreApp</a>
-								<a class="text-decoration-none padding-06 me-3" href="{{path("explorer")}}">Explora</a>
+							<div class="navbar-header bg-white d-flex align-items-center">
+							<a href="{{path("home")}}"><img src="build/images/logo.svg" class ="px-3" style ="height:50px"></a>
+								<a class="navbar-brand font-family text-dark" href="{{path("home")}}">Fooddie</a>
+								<a class="text-decoration-none" href="{{path("explorer")}}">Explora</a>
 								{% if is_granted('ROLE_USER')%}
 									<a class="text-decoration-none padding-06 me-3" href="{{path("recipe_new")}}">Subir receta</a>
 								{%- endif %}
