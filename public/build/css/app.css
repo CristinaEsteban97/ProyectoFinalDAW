@@ -6,6 +6,10 @@
   font-family: 'Inter', sans-serif;
 }
 
+.height-50{
+  height: 50px;
+}
+
 .padding-06 {
   padding-top: 0.6rem;
 }
