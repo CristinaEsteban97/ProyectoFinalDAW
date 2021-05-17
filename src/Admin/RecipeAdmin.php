@@ -14,10 +14,6 @@ use Sonata\AdminBundle\Form\Type\ModelListType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Sonata\AdminBundle\Route\RouteCollection;
 
-
-
-
-
 final class RecipeAdmin extends AbstractAdmin
 {
 
@@ -27,6 +23,7 @@ final class RecipeAdmin extends AbstractAdmin
         ->add('title',null,['label' =>'Título'])
         ->add('image',null,['label' =>'Imagen'])
         ->add('description',null,['label' =>'Descripción'])
+        ->add('user', null,['label' =>'Usuario'])
         ->add('visible')
             ;
     }
@@ -51,24 +48,9 @@ final class RecipeAdmin extends AbstractAdmin
     }
 
     protected function configureFormFields(FormMapper $formMapper): void
-    {        
-            $image = $this->getSubject();
-
-            // use $fileFormOptions so we can add other options to the field
-            $fileFormOptions = ['required' => false];
-            if ($image && ($webPath = $image->getImage())) {
-                // get the request so the full path to the image can be set
-                $request = $this->getRequest();
-                $fullPath = $request->getBasePath().'/'.$webPath;
-    
-                // add a 'help' option containing the preview's img tag
-                $fileFormOptions['help'] = '<img src="'.$fullPath.'" class="admin-preview"/>';
-                $fileFormOptions['help_html'] = true;
-            }
-
+    {       
             $formMapper
             ->add('title',null,['label' =>'Título'])
-            //->add('image', FileType::class, $fileFormOptions)
             ->add('description',null,['label' =>'Descripción'])
             ->add('ingredients',null,['label' =>'Ingredientes'])
             ->add('visible')
@@ -81,7 +63,7 @@ final class RecipeAdmin extends AbstractAdmin
             ->add('title',null,['label' =>'Título'])
             ->add('image',null,['label' =>'Imagen'])
             ->add('description',null,['label' =>'Descripción'])
-            ->add('user', CollectionType::class)
+            ->add('user', CollectionType::class,['label' =>'Usuario'])
             ->add('visible')
             ->add('categories',null,['label' =>'Categorias'])
             ;

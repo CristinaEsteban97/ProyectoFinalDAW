@@ -9,6 +9,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 
 final class CommentAdmin extends AbstractAdmin
 {
@@ -26,8 +27,8 @@ final class CommentAdmin extends AbstractAdmin
         $listMapper
             ->add('id')
             ->add('text',null,['label' =>'Texto'])
-            ->add('user', CollectionType::class)
-            ->add('recipe', CollectionType::class)
+            ->add('user', CollectionType::class,['label' =>'Usuario'])
+            ->add('recipe', CollectionType::class, ['label' =>'Receta'])
             ->add('visible')
             ->add('_action', null, [
                 'label' => 'Acciones',
@@ -52,8 +53,14 @@ final class CommentAdmin extends AbstractAdmin
         $showMapper
             ->add('text',null,['label' =>'Texto'])
             ->add('visible')
-            ->add('user', CollectionType::class)
-            ->add('recipe', CollectionType::class)
+            ->add('user', CollectionType::class,['label' =>'Usuario'])
+            ->add('recipe', CollectionType::class,['label' =>'Receta'])
+            ;
+    }
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection
+            ->remove('create')
             ;
     }
 }

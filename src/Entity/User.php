@@ -167,25 +167,4 @@ class User implements UserInterface
         return (string)$this->getEmail();
     }
 
-    public function addRecipe(Recipe $recipe): self
-    {
-        if (!$this->recipes->contains($recipe)) {
-            $this->recipes[] = $recipe;
-            $recipe->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeRecipe(Recipe $recipe): self
-    {
-        if ($this->recipes->removeElement($recipe)) {
-            // set the owning side to null (unless already changed)
-            if ($recipe->getUser() === $this) {
-                $recipe->setUser(null);
-            }
-        }
-
-        return $this;
-    }
 }

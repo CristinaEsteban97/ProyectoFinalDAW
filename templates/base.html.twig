@@ -8,7 +8,7 @@
 					Fooddie
 				{% endblock %}
 			</title>
-			<link rel="shortcut icon" href="build/images/logo.svg">
+			<link rel="shortcut icon" href="{{ asset('build/images/logo.svg')}}">
 
 			{% block stylesheets %}
 				<link rel="stylesheet" href="{{ asset('build/css/app.css')}}">
@@ -19,8 +19,6 @@
 			{% endblock %}
 
 			{% block javascripts %}
-				<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-				<script type="text/javascript" src="{{ asset('build/js/dynamically_functions.js')}}"></script>
 			{% endblock %}
 
 		{% endblock %}
@@ -31,11 +29,11 @@
 					<nav class="navbar bg-white navbar-inverse z-index">
 						<div class="container-fluid">
 							<div class="navbar-header bg-white d-flex align-items-center">
-								<a href="{{path("home")}}"><img src="build/images/logo.svg" class="px-3 height-50"></a>
+								<a href="{{path("home")}}"><img src="{{ asset('build/images/logo.svg')}}" class="px-3 height-50"></a>
 								<a class="navbar-brand font-family text-dark" href="{{path("home")}}">Fooddie</a>
 								<a class="text-decoration-none" href="{{path("explorer")}}">Explora</a>
 								{% if is_granted('ROLE_USER')%}
-									<a class="text-decoration-none padding-06 me-3" href="{{path("recipe_new")}}">Subir receta</a>
+									<a class="text-decoration-none mx-3" href="{{path("recipe_new")}}">Subir receta</a>
 								{%- endif %}
 							</div>
 							<ul class="d-flex flex-row nav navbar-nav navbar-right">

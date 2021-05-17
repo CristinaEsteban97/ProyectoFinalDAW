@@ -4,6 +4,11 @@
 	{{ recipe.title }}
 {% endblock %}
 
+{% block javascripts %}
+	<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="{{ asset('build/js/dynamically_functions.js')}}"></script>
+{% endblock %}
+
 {% block body %}
 	<body class="bg-beige">
 		{% for message in app.flashes('success') %}
@@ -110,7 +115,7 @@
 							{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 								{% if(comment.user.id== app.user.id) %}
 									<a href="{{path('comment_delete', {'id': comment.id })}}" class="text-decoration-none ">Eliminar</a>
-									<a class="text-decoration-none px-4" data-reply data-id="{{comment.id}}" onclick="displayReplyForm({{comment.id}})">Responder</a>
+									<a class="text-decoration-none cursor px-4" data-reply data-id="{{comment.id}}" onclick="displayReplyForm({{comment.id}})">Responder</a>
 								{% endif %}
 							{% endif %}
 

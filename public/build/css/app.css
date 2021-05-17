@@ -229,3 +229,7 @@ ol > li {
 .delete_quote{
   height: 12px;
 }
+
+.cursor{
+  cursor: pointer;
+}
