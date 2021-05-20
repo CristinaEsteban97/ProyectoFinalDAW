@@ -19,6 +19,7 @@ use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
 use Symfony\Component\Security\Guard\PasswordAuthenticatedInterface;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
+use Symfony\Component\HttpFoundation\Response;
 
 
 class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements PasswordAuthenticatedInterface
@@ -98,13 +99,14 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
         }
+        
+        if ($this->security->isGranted('ROLE_USER')) {
+            return new RedirectResponse($this->urlGenerator->generate('explorer'));
+        }  
 
         if ($this->security->isGranted('ROLE_ADMIN')) {
             return new RedirectResponse($this->urlGenerator->generate('sonata_admin_redirect'));
-        }
-        if ($this->security->isGranted('ROLE_USER')) {
-            return new RedirectResponse($this->urlGenerator->generate('explorer'));
-        }      
+        }    
     }
 
     protected function getLoginUrl()

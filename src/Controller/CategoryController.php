@@ -7,14 +7,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\RecipeRepository;
 use App\Repository\ScoreRepository;
-
+use Symfony\Component\HttpFoundation\Request;
 
 class CategoryController extends AbstractController
 {
     /**
      * @Route("/categoria/{name}", name="category", methods={"GET"}))
      */
-    public function index(RecipeRepository $recipeRepository,ScoreRepository $scoreRepository, string $name): Response
+    public function index(RecipeRepository $recipeRepository,ScoreRepository $scoreRepository, string $name, Request $request): Response
     {
         $recipes = $recipeRepository->findRecipesByCategory($name);
         $no_recipes = '';
@@ -42,11 +42,14 @@ class CategoryController extends AbstractController
             }
         }
 
+        $url = $request->getUri();
+
         return $this->render('category/category.html.twig', [
             'name_category' => $name,
             'recipes' => $recipes,
             'no_recipes' => $no_recipes, 
-            'totalScores' => $totalScores      
+            'totalScores' => $totalScores,
+            'url' => $url     
         ]);
     }
 

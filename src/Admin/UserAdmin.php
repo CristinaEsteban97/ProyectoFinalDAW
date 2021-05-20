@@ -17,6 +17,7 @@ use Symfony\Component\Security\Core\Encoder\BCryptPassword;
 use Symfony\Component\Security\Core\Encoder\BCryptPasswordEncoder;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
 final class UserAdmin extends AbstractAdmin
 {
@@ -51,13 +52,14 @@ final class UserAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper): void
     {
         $formMapper
-            ->add('email')
+            ->add('email', EmailType::class)
             ->add('roles', ChoiceType::class, [
                 'multiple' => true,
                 'choices' => ['ROLE_USER' => 'ROLE_USER', 'ROLE_ADMIN' => 'ROLE_ADMIN']
             ])
             ->add('password', RepeatedType::class, array(
                 'type' => PasswordType::class,
+                'invalid_message' => 'Las contraseñas no coinciden',
                 'first_options' => array('label' => 'Contraseña'),
                 'second_options' => array('label' => 'Repite contraseña'),
                 'constraints' => [

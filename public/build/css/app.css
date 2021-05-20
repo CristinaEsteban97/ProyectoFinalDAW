@@ -204,11 +204,15 @@
   text-align: justify;
 }    
 
-.ml-13{
-  margin-left:13%
+.ml-12{
+  margin-left:12.5%
 }
 
 /* Recipe */
+
+.height-19{
+  height: 19px;
+}
 
 ol > li {
   padding: 10px;

@@ -88,7 +88,7 @@ class RecipeController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $user = $this->getUser();
 
-        if ($score_form->isSubmitted() && $score_form->isValid()) {
+        if ($score_form->isSubmitted() && $score_form->isValid()) {  
             $score_value = $score_form->get("score")->getData();
 
             $isScore = $scoreRepository->findBy(array('user' => $user , 'recipe' => $recipe->getId()));
@@ -127,47 +127,16 @@ class RecipeController extends AbstractController
             return $this->redirect($request->getUri());     
         }
 
-        $comments = $commentRepository->findCommentsByRecipe($recipe);       
+        $comments = $commentRepository->findCommentsByRecipe($recipe);
+        $url = $request->query->get('url');
 
         return $this->render('recipe/show/show.html.twig', [
             'recipe' => $recipe,
             'score_form' => $score_form->createView(),
             'comment_form' => $comment_form->createView(),
-            'comments' => $comments
+            'comments' => $comments,
+            'url' => $url
         ]);
     }
-
-    /**
-     * @Route("/receta/{title}/editar", name="recipe_edit", methods={"GET","POST"})
-     */
-    public function edit(Request $request, Recipe $recipe): Response
-    {
-        $form = $this->createForm(RecipeType::class, $recipe);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('recipe_index');
-        }
-
-        return $this->render('recipe/edit.html.twig', [
-            'recipe' => $recipe,
-            'form' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/receta/{title}/borrar", name="recipe_delete", methods={"DELETE"})
-     */
-    public function delete(Request $request, Recipe $recipe): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$recipe->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($recipe);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('recipe_index');
-    }
+  
 }
