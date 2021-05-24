@@ -21,8 +21,8 @@
 				{{ message }}
 			</div>
 		{% endfor %}
-	
-		<a class="d-block text-decoration-none cursor px-4 pt-3"  href="{{url}}"><img src="{{ asset('build/images/back.svg')}}" class="height-19"></a>
+
+		<a class="d-block text-decoration-none cursor px-4 pt-3" href="{{url}}"><img src="{{ asset('build/images/back.svg')}}" class="height-19"></a>
 		<h1 class="text-center pt-5" id="title">{{ recipe.title }}</h1>
 		<div class="d-flex justify-content-center p-5"><img class="w-50" src="../uploads/images/{{recipe.image}}"></div>
 		<h4 class="text-center mb-5">Ingredientes</h4>
@@ -114,9 +114,9 @@
 								{% endautoescape %}
 							{% endif %}
 							{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+								<a class="text-decoration-none cursor" data-reply data-id="{{comment.id}}" onclick="displayReplyForm({{comment.id}})">Responder</a>
 								{% if(comment.user.id== app.user.id) %}
-									<a href="{{path('comment_delete', {'id': comment.id })}}" class="text-decoration-none ">Eliminar</a>
-									<a class="text-decoration-none cursor px-4" data-reply data-id="{{comment.id}}" onclick="displayReplyForm({{comment.id}})">Responder</a>
+									<a href="{{path('comment_delete', {'id': comment.id })}}" class="text-decoration-none px-4">Eliminar</a>
 								{% endif %}
 							{% endif %}
 
